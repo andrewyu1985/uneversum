@@ -128,12 +128,41 @@ export default function HomePage() {
                   Как мы работаем
                 </Link>
               </div>
+              <p className="text-caption text-[var(--text-muted)] mt-5">
+                ✓ Без обязательств — вводная встреча бесплатно
+              </p>
             </div>
           </div>
           <div
             className="absolute right-0 top-0 h-full w-px opacity-20"
             style={{ background: "linear-gradient(to bottom, transparent, var(--accent-warm), transparent)" }}
           />
+        </section>
+
+        {/* Trust Bar */}
+        <section className="bg-[var(--bg-secondary)] border-y border-[var(--border-default)] py-6">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              {[
+                { value: "40+", label: "специалистов\nс доказательным подходом" },
+                { value: "3", label: "персональных\nмаршрута" },
+                { value: "94%", label: "продолжают\nпосле первого месяца" },
+                { value: "6", label: "лет работы\nс реальными запросами" },
+              ].map((s) => (
+                <div key={s.value} className="flex flex-col items-center md:items-start md:flex-row md:gap-3">
+                  <span
+                    className="text-[var(--text-primary)] leading-none mb-1 md:mb-0"
+                    style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 300 }}
+                  >
+                    {s.value}
+                  </span>
+                  <span className="text-caption text-[var(--text-muted)] whitespace-pre-line text-center md:text-left">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Pain Points */}
@@ -176,8 +205,10 @@ export default function HomePage() {
                 <Link
                   key={p.id}
                   href={`/pathways/${p.id}`}
-                  className="card-base p-7 flex flex-col"
+                  className="card-base flex flex-col overflow-hidden"
                 >
+                  <div style={{ height: "5px", background: p.color, borderRadius: "var(--radius-xl) var(--radius-xl) 0 0" }} />
+                  <div className="p-7 flex flex-col flex-1">
                   <span
                     className="tag mb-5 self-start"
                     style={{ borderColor: p.color, color: p.color }}
@@ -194,6 +225,7 @@ export default function HomePage() {
                     <span>{p.duration}</span>
                     <span className="opacity-40">·</span>
                     <span>{p.format}</span>
+                  </div>
                   </div>
                 </Link>
               ))}
